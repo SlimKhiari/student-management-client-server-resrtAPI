@@ -1,4 +1,4 @@
-package projetarchitecture2022.controller;
+package projetarchitecture2022.server.controller;
 
 
 /*
