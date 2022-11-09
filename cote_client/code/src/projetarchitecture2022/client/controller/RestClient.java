@@ -1,156 +1,111 @@
-package projetarchitecture2022.client.controller;
-
-
 import kong.unirest.Unirest;
 import kong.unirest.HttpResponse;
-
 
 public class RestClient {
 	private String url;
 	
-	
-	public RestClient (String u,String p) {
-		url= u+":"+p;
+	public RestClient (String x,String y) {
+		url= x+":"+y;
 	}
 	
-	public String postCreatePerson(String id, String fName, String lName, String eM, String Stat)
+	public String postCreateStudent(String id, String  firstname, String lastname)
 	{		
-		HttpResponse<String> response = Unirest.post("http://"+url+"/createPerson")
+		HttpResponse<String> response = Unirest.post("http://"+url+"/createStudent")
 				  .header("Content-Type", "application/json")
-				  .body("{ \"personId\" :"
-					  		+ " \""+id+"\" , \"firstName\" : \""+fName+"\" , \"lastName\" : "
-					  		+ "\""+lName+"\" , \"email\" : \""+eM+"\" , \"status\" "
-					  		+ ": \""+Stat+"\" }\n")
-				  .asString();
-		return response.getBody();
-	}
-	public String postCreateRoom(String rId, String rName, String rcap, String bName)
-	{
-		HttpResponse<String> response = Unirest.post("http://"+url+"/createRoom")
-				  .header("Content-Type", "application/json")
-				  .body("{ \"roomId\" : \""+rId+"\" , "
-				  		+ "\"roomName\" : \""+rName+"\" ,"
-				  		+ " \"capacity\" : \""+rcap+"\" ,"
-				  		+ " \"buildingName\" : \""+bName+"\" }\n")
-				  .asString();
-		return response.getBody();
-	}
-		
-		
-	public String postCreateTimeSlot(String tId, String day, String start, String end)
-	{
-		HttpResponse<String> response = Unirest.post("http://"+url+"/createTimeSlot")
-				  .header("Content-Type", "application/json")
-				  .body("{  \"timeSlotId\" : \""+tId+"\" ,"
-				  		+ " \"day\" : \""+day+"\" ,"
-				  		+ " \"start\" : \""+start+"\" , "
-				  		+ "\"end\" : \""+end+"\" }\n")
+				  .body("{ \"studentId\" :"
+					  		+ " \""+id+"\" , \"firstName\" : \""+firstname+"\" , \"lastName\" : "
+					  		+ "\""+lastname+"\" }\n")
 				  .asString();
 		return response.getBody();
 	}
 	
-	public String postCreateReservation(String pId, String fName, String lName, String eM, String Stat, String rId,
-			String rName, String rCap, String bName,String tId, String day, String start, String end)
+	public String postCreateSubject(int id, String title, String description)
 	{
-		HttpResponse<String> response = Unirest.post("http://"+url+"/createReservation")
+		HttpResponse<String> response = Unirest.post("http://"+url+"/createSubject")
 				  .header("Content-Type", "application/json")
-				  .body("{ \"personId\" : \""+pId+"\" ,"
-				  		+ " \"firstName\" : \""+fName+"\" , "
-				  		+ "\"lastName\" : \""+lName+"\" , "
-				  		+ "\"email\" : \""+eM+"\" ,"
-				  		+ " \"status\" : \""+Stat+"\" ,"
-				  		+ "\"roomId\" : \""+rId+"\" , "
-				  		+ "\"roomName\" : \""+rName+"\" ,"
-				  		+ " \"capacity\" : \""+rCap+"\" ,"
-				  		+ " \"buildingName\" : \""+bName+"\" ,"
-				  		+ " \"timeSlotId\" : \""+tId+"\" ,"
-				  		+ " \"day\" : \""+day+"\" , "
-				  		+ "\"start\" : \""+start+"\" ,"
-				  		+ " \"end\" : \""+end+"\" }\n")
+				  .body("{ \"subjectId\" : \""+id+"\" , "
+				  		+ "\"subjectTitle\" : \""+title+"\" ,"
+				  		+ " \"subjectDescription\" : \""+description+"\" }\n")
+				  .asString();
+		return response.getBody();
+	}
+
+	public String postCreateTeachingUnit(int id, String title)
+	{
+		HttpResponse<String> response = Unirest.post("http://"+url+"/createTeachingUnit")
+				  .header("Content-Type", "application/json")
+				  .body("{  \"teachingUnitId\" : \""+id+"\" ,"
+				  		+ " \"teachingUnitTitle\" : \""+title+"\" }\n")
 				  .asString();
 		return response.getBody();
 	}
 	
-	public String postDeletePerson(String pId, String fName, String lName, String eM, String Stat)
+	public String postCreateGroup(int id, String name, int tId, String tTitle, int sId, String subjecTitle,
+			String description, String studentId, String  firstname, String lastname)
 	{
-		HttpResponse<String> response = Unirest.post("http://"+url+"/deletePerson")
+		HttpResponse<String> response = Unirest.post("http://"+url+"/createGroup")
 				  .header("Content-Type", "application/json")
-				  .body(" {  \"personId\" : \""+pId+"\" , "
-				  		+ "\"firstName\" : \""+fName+"\" ,"
-				  		+ " \"lastName\" : \""+lName+"\" ,"
-				  		+ " \"email\" : \""+eM+"\" ,"
-				  		+ " \"status\" : \""+Stat+"\"  }\t\n")
+				  .body("{ \"grouoId\" : \""+id+"\" ,"
+				  		+ " \"groupName\" : \""+name+"\" , "
+				  		+ "\"teachingUnitId\" : \""+tId+"\" , "
+				  		+ "\"teachingUnitTitle\" : \""+tTitle+"\" ,"
+				  		+ " \"subjectId\" : \""+sId+"\" ,"
+				  		+ "\"subjectTitle\" : \""+subjecTitle+"\" , "
+				  		+ " \"subjectDescription\" : \""+description+"\" ,"
+				  		+ " \"studentId\" : \""+studentId+"\" ,"
+				  		+ " \"studentFirstName\" : \""+firstname+"\" ,"
+				  		+ " \"studentLastName\" : \""+lastname+"\" }\n"}
 				  .asString();
 		return response.getBody();
 	}
-	public String postDeleteRoom( String rId, String rName, String rCap, String bName)
-	{
-		HttpResponse<String> response = Unirest.post("http://"+url+"/deleteRoom")
+
+	public String postDeleteStudent(String id, String  firstname, String lastname)
+	{		
+		HttpResponse<String> response = Unirest.post("http://"+url+"/deleteStudent")
 				  .header("Content-Type", "application/json")
-				  .body("{   \"roomId\" : \""+rId+"\" ,"
-				  		+ " \"roomName\" : \""+rName+"\" ,"
-				  		+ " \"capacity\" : \""+rCap+"\" ,"
-				  		+ " \"buildingName\" : \""+bName+"\" }\n")
-				  .asString();
-		return response.getBody();
-	}
-	
-	public String postDeleteTimeSlot(String tId, String day, String start, String end)
-	{
-		HttpResponse<String> response = Unirest.post("http://"+url+"/deleteTimeSlot")
-				  .header("Content-Type", "application/json")
-				  .body("{  \"timeSlotId\" : \""+tId+"\" , "
-				  		+ "\"day\" : \""+day+"\" ,"
-				  		+ "\"start\" : \""+start+"\" ,"
-				  		+ "\"end\" : \""+end+"\" }")
+				  .body("{ \"studentId\" :"
+					  		+ " \""+id+"\" , \"firstName\" : \""+firstname+"\" , \"lastName\" : "
+					  		+ "\""+lastname+"\" }\n")
 				  .asString();
 		return response.getBody();
 	}
 	
-	public String postDeleteReservation(String pId, String fName, String lName, String eM, String Stat, String rId,
-			String rName, String rCap, String bName,String tId, String day, String start, String end)
+	public String postDeleteSubject(int id, String title, String description)
 	{
-		HttpResponse<String> response = Unirest.post("http://"+url+"/deleteReservation")
+		HttpResponse<String> response = Unirest.post("http://"+url+"/deleteSubject")
 				  .header("Content-Type", "application/json")
-				  .body("{ \"personId\" : \""+pId+"\" ,"
-					  		+ " \"firstName\" : \""+fName+"\" , "
-					  		+ "\"lastName\" : \""+lName+"\" , "
-					  		+ "\"email\" : \""+eM+"\" ,"
-					  		+ " \"status\" : \""+Stat+"\" ,"
-					  		+ "\"roomId\" : \""+rId+"\" , "
-					  		+ "\"roomName\" : \""+rName+"\" ,"
-					  		+ " \"capacity\" : \""+rCap+"\" ,"
-					  		+ " \"buildingName\" : \""+bName+"\" ,"
-					  		+ " \"timeSlotId\" : \""+tId+"\" ,"
-					  		+ " \"day\" : \""+day+"\" , "
-					  		+ "\"start\" : \""+start+"\" ,"
-					  		+ " \"end\" : \""+end+"\" }\n")
+				  .body("{ \"subjectId\" : \""+id+"\" , "
+				  		+ "\"subjectTitle\" : \""+title+"\" ,"
+				  		+ " \"subjectDescription\" : \""+description+"\" }\n")
 				  .asString();
 		return response.getBody();
 	}
 	
-	public String postEditReservation(String pId, String fName, String lName, String eM, String Stat, String rId,
-			String rName, String rCap, String bName,String tId, String day, String start, String end, String ntId, String nday, String nstart, String nend)
+	public String postDeleteTeachingUnit(int id, String title)
 	{
-		HttpResponse<String> response = Unirest.post("http://"+url+"/editReservation")
+		HttpResponse<String> response = Unirest.post("http://"+url+"/deleteTeachingUnit")
 				  .header("Content-Type", "application/json")
-				  .body("{ \"personId\" : \""+pId+"\" ,"
-				  		+ " \"firstName\" : \""+fName+"\" , "
-				  		+ "\"lastName\" : \""+lName+"\" , "
-				  		+ "\"email\" : \""+eM+"\" ,"
-				  		+ " \"status\" : \""+Stat+"\" ,"
-				  		+ "\"roomId\" : \""+rId+"\" , "
-				  		+ "\"roomName\" : \""+rName+"\" ,"
-				  		+ " \"capacity\" : \""+rCap+"\" ,"
-				  		+ " \"buildingName\" : \""+bName+"\" ,"
-				  		+ " \"timeSlotId\" : \""+tId+"\" ,"
-				  		+ " \"day\" : \""+day+"\" , "
-				  		+ "\"start\" : \""+start+"\" ,"
-				  		+ " \"end\" : \""+end+"\" ,"+
-				  		"\"newTimeSlotId\" : \""+ntId+"\" ,"
-				  		+ " \"newDay\" : \""+nday+"\" ,"
-				  		+ " \"newStart\" : \""+nstart+"\" ,"
-				  		+ " \"newEnd\" : \""+nend+"\"}")
+				  .body("{  \"teachingUnitId\" : \""+id+"\" ,"
+				  		+ " \"teachingUnitTitle\" : \""+title+"\" }\n")
+				  .asString();
+		return response.getBody();
+	}
+	
+	public String postDeleteGroup(int id, String name, int tId, String tTitle, int sId, String subjecTitle,
+			String description, String studentId, String  firstname, String lastname)
+	{
+		HttpResponse<String> response = Unirest.post("http://"+url+"/deleteGroup")
+				  .header("Content-Type", "application/json")
+				  .body("{ \"grouoId\" : \""+id+"\" ,"
+				  		+ " \"groupName\" : \""+name+"\" , "
+				  		+ "\"teachingUnitId\" : \""+tId+"\" , "
+				  		+ "\"teachingUnitTitle\" : \""+tTitle+"\" ,"
+				  		+ " \"subjectId\" : \""+sId+"\" ,"
+				  		+ "\"subjectTitle\" : \""+subjecTitle+"\" , "
+				  		+ " \"subjectDescription\" : \""+description+"\" ,"
+				  		+ " \"studentId\" : \""+studentId+"\" ,"
+				  		+ " \"studentFirstName\" : \""+firstname+"\" ,"
+				  		+ " \"studentLastName\" : \""+lastname+"\" }\n"}
 				  .asString();
 		return response.getBody();
 	}
