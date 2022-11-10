@@ -1,4 +1,4 @@
-package projetarchitecture2022.model;
+package model;
 
 public class TeachingUnit {
 

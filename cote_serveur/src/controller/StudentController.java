@@ -1,4 +1,4 @@
-package projetarchitecture2022.controller;
+package controller;
 
 /*
  *classe de Lecture, création, et  suppression d'étudiant

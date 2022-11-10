@@ -4,12 +4,9 @@
  * and open the template in the editor.
  */
 
-package projetarchitecture2022.server;
-
 import java.sql.Connection;
 
-import client.InterfacePrincipale;
-import server.controller.connectionDB;
+import controller.connectionDB;
 
 import static spark.Spark.*;
 /**
@@ -23,9 +20,8 @@ public class ProjetArchitectureServer2022 {
      */
     public static void main(String[] args) {
 
-    	//Connection con = connectionDB.getConnection();
-        //InterfacePrincipale p = new InterfacePrincipale(con);
-        //p.setVisible(true);
+    	Connection con = connectionDB.getConnection();
+       
     }
     
 }
