@@ -295,7 +295,7 @@ public class PanelGroups extends javax.swing.JPanel {
         selectedindex_group = listGroup.getSelectedRow();
         Group s = new Group(Integer.parseInt(listGroup.getValueAt(selectedindex_group, 0).toString()), null, null, null, null);
         System.out.println("delete group: "+ selectedindex_group);
-        this.group.deleteGroup(s.getId());
+        this.group.deleteGroup(s.getName());
         rafraichissement_du_tableau();
     }//GEN-LAST:event_jButton3ActionPerformed
 
