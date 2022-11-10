@@ -45,6 +45,9 @@ public class GroupController {
                 ArrayList<Student> stud = getListStudentByGroupId(id);
 
                 Group group = new Group(id, name, tu, stud, sub);
+                System.out.println(tu.getTitle());
+                System.out.println(stud.size());
+                System.out.println(sub.getTitle());
                 temp.add(group);
             }
         } catch (Exception e) {

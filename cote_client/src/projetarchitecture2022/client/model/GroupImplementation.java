@@ -2,6 +2,8 @@ package projetarchitecture2022.client.model;
 
 import java.util.ArrayList;
 
+import kong.unirest.json.JSONArray;
+import kong.unirest.json.JSONObject;
 import projetarchitecture2022.client.controller.RestClient;
 
 public class GroupImplementation implements GroupInterface {
@@ -59,31 +61,34 @@ public class GroupImplementation implements GroupInterface {
 	@Override
 	public ArrayList<Student> getStudents() {
 		String response = this.restClient.getData("students");
-		String[] studentsString = response.split("\n");
 		
-		return stringListToStudentList(studentsString);
+		JSONArray ja = new JSONArray(response);
+		
+		return JSONToStudentList(ja);
 	}
 	
-	public ArrayList<Student> stringListToStudentList(String[] studentsString) {
+	public ArrayList<Student> JSONToStudentList(JSONArray studentsJSON) {
 		ArrayList<Student> students = new ArrayList<Student>();
 		
-		for (String studentString : studentsString) {
-			String[] paramsStudents = studentString.split(" ");
-			students.add(new Student(Integer.parseInt(paramsStudents[0]), paramsStudents[1], paramsStudents[3]));
+		for (int i=0; i<studentsJSON.length(); i++) {
+			JSONObject objStudent = studentsJSON.getJSONObject(i);  
+			students.add(new Student(objStudent.getInt("id"), objStudent.getString("firstname"), objStudent.getString("lastname")));		
 		}
+		
 		return students;
 	}
 
 	@Override
 	public ArrayList<TeachingUnit> getTeachingUnits() {
-		String response = this.restClient.getData("teachingUnits");
-		String[] teachingUnitsString = response.split("\n");
+		String response = this.restClient.getData("teachingunits");
+		
+		JSONArray tuJSON = new JSONArray(response);
 		
 		ArrayList<TeachingUnit> teachingUnits = new ArrayList<TeachingUnit>();
 		
-		for (String teachingUnitString : teachingUnitsString) {
-			String[] paramsTU = teachingUnitString.split(" ");
-			teachingUnits.add(new TeachingUnit(Integer.parseInt(paramsTU[0]), paramsTU[1]));
+		for (int i=0; i<tuJSON.length(); i++) {
+			JSONObject objTU = tuJSON.getJSONObject(i);  
+			teachingUnits.add(new TeachingUnit(objTU.getInt("id"), objTU.getString("title")));
 		}
 		
 		return teachingUnits;
@@ -92,18 +97,18 @@ public class GroupImplementation implements GroupInterface {
 	@Override
 	public ArrayList<Group> getGroups() {
 		String response = this.restClient.getData("groups");
-		String[] groupsString = response.split("\n");
+		
+		JSONArray groupJSON = new JSONArray(response);
 		
 		ArrayList<Group> groups = new ArrayList<Group>();
 		
-		for (String groupString : groupsString) {
-			String[] paramsGroup = groupString.split(" ");
-			TeachingUnit teachingUnit = getTeachingUnitByTitle(paramsGroup[2]);
-			String[] studentsString = paramsGroup[2].split("\n");
-			ArrayList<Student> students = stringListToStudentList(studentsString);
-			Subject subject = getSubjectByTitle(paramsGroup[4]);
-			groups.add(new Group(Integer.parseInt(paramsGroup[0]), paramsGroup[1], teachingUnit, students, subject));
-		}
+//		for (int i=0; i<groupJSON.length(); i++) {
+//			JSONObject objGroup = groupJSON.getJSONObject(i);  
+//			ArrayList<Student> students = JSONToStudentList(objGroup.getJSONArray("students"));
+//			Subject subject = getSubjectByTitle(objGroup.getString("subjectTitle"));
+//			TeachingUnit teachingUnit = getTeachingUnitByTitle(objGroup.getString("teachingUnitTitle"));
+//			groups.add(new Group(objGroup.getInt("id"), objGroup.getString("name"), teachingUnit, students, subject));
+//		}
 		
 		return groups;
 	}
@@ -111,40 +116,42 @@ public class GroupImplementation implements GroupInterface {
 	@Override
 	public ArrayList<Subject> getSubjects() {
 		String response = this.restClient.getData("subjects");
-		String[] subjectsString = response.split("\n");
+		
+		JSONArray subjectsJSON = new JSONArray(response);
 		
 		ArrayList<Subject> subjects = new ArrayList<Subject>();
 		
-		for (String subjectString : subjectsString) {
-			String[] paramsSubject = subjectString.split(" ");
-			subjects.add(new Subject(Integer.parseInt(paramsSubject[0]), paramsSubject[1], paramsSubject[2]));
+		for (int i=0; i<subjectsJSON.length(); i++) {
+			JSONObject objSubject = subjectsJSON.getJSONObject(i);  
+			subjects.add(new Subject(objSubject.getInt("id"), objSubject.getString("title"), objSubject.getString("description")));
 		}
-		
+
 		return subjects;
 	}
 
 	@Override
 	public TeachingUnit getTeachingUnitByTitle(String title) {
 		String response = this.restClient.getTeachingUnitByTitle(title);
-		String[] TUString = response.split(" ");
+			
+		JSONObject tuJSON = new JSONObject(response);
 		
-		return new TeachingUnit(Integer.parseInt(TUString[0]), TUString[1]);
+		return new TeachingUnit(tuJSON.getInt("id"), tuJSON.getString("title"));
 	}
 
 	@Override
 	public Subject getSubjectByTitle(String title) {
 		String response = this.restClient.getSubjectByTitle(title);
-		String[] subjectString = response.split(" ");
+		JSONObject subjectJSON = new JSONObject(response);
 		
-		return new Subject(Integer.parseInt(subjectString[0]), subjectString[1], subjectString[2]);
+		return new Subject(subjectJSON.getInt("id"), subjectJSON.getString("title"), subjectJSON.getString("description"));
 	}
 
 	@Override
 	public Student getStudentById(int id) {
 		String response = this.restClient.getStudentById(id);
-		String[] studentString = response.split(" ");
+		JSONObject studentJSON = new JSONObject(response);
 		
-		return new Student(Integer.parseInt(studentString[0]), studentString[1], studentString[3]);
+		return new Student(studentJSON.getInt("id"), studentJSON.getString("firstname"), studentJSON.getString("lastname"));
 	}
 
 }

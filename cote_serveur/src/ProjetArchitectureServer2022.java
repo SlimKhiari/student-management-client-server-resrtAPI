@@ -5,10 +5,8 @@
  */
 
 import java.sql.Connection;
-
+import controller.RestServer;
 import controller.connectionDB;
-
-import static spark.Spark.*;
 
 /**
  *
@@ -17,12 +15,13 @@ import static spark.Spark.*;
 public class ProjetArchitectureServer2022 {
 
     public static void main(String[] args) {
-
-    	get("/students/studentId/:id/first:", (request, response) -> {
-    	    return "Hello: " + request.params(":name");
-    	});
-  	
     	Connection con = connectionDB.getConnection();
+    	RestServer restServer = new RestServer();
+    	
+    	restServer.getStudents();
+    	restServer.getSubjects();
+    	restServer.getTU();
+    	restServer.getGroups();
     	
     }
     
