@@ -12,7 +12,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import projetarchitecture2022.model.*;
+import model.*;
 
 public class GroupController {
 

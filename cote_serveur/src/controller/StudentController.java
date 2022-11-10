@@ -6,7 +6,7 @@ package controller;
  */
 import java.sql.*;
 import java.util.ArrayList;
-import projetarchitecture2022.model.Student;
+import model.Student;
 
 public class StudentController {
 

@@ -21,7 +21,7 @@ public class ProjetArchitectureClient2022 {
      */
     public static void main(String[] args) {
     	GroupImplementation group = new GroupImplementation();
-    	group.initRestClient("x", "y");
+    	group.initRestClient("localhost", "4567");
 		InterfacePrincipale p = new InterfacePrincipale(group);
         p.setVisible(true);
     }

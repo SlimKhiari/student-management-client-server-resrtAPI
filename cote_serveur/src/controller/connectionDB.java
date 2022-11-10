@@ -1,4 +1,4 @@
-package projetarchitecture2022.server.controller;
+package controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

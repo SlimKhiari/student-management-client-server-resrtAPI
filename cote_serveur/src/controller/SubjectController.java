@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import projetarchitecture2022.model.Subject;
+import model.Subject;
 
 public class SubjectController {
 
