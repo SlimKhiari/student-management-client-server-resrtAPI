@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetarchitecture2022.views;
+package projetarchitecture2022.client.views;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import projetarchitecture2022.controller.SubjectController;
-import projetarchitecture2022.model.Subject;
+
+import projetarchitecture2022.client.model.GroupImplementation;
+import projetarchitecture2022.client.model.Subject;
 
 /**
  *
@@ -22,8 +23,10 @@ public class PanelSubjects extends javax.swing.JPanel {
     
     private final String entete[] = {"Code sujet", "Nom", "description"};
     private int selectedindex;
+    private GroupImplementation group;
     
-    public PanelSubjects(Connection con) {
+    public PanelSubjects(GroupImplementation group) {
+    	this.group = group;
         initComponents();
     }
 
@@ -47,8 +50,7 @@ public class PanelSubjects extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         Object[][] data = null;
 
-        SubjectController sc = new SubjectController();
-        ArrayList<Subject> subject = sc.getSubjects();
+        ArrayList<Subject> subject = this.group.getSubjects();
 
         data = new Object[subject.size()][3];
 
@@ -194,8 +196,7 @@ public class PanelSubjects extends javax.swing.JPanel {
         System.out.println("Click sur le bouton créer un éléve");
         Subject s = new Subject(jt_subject_nom.getText(), jt_subject_description.getText());
         
-        SubjectController sc = new SubjectController();
-        sc.createSubject(s);
+        this.group.createSubject(s.getId(), s.getTitle(), s.getDescription());
         rafraichissement_du_tableau();
         jt_subject_nom.setText("");
         jt_subject_description.setText("");
@@ -209,9 +210,8 @@ public class PanelSubjects extends javax.swing.JPanel {
         // TODO add your handling code here:
         selectedindex = listSubjects.getSelectedRow();
         Subject s = new Subject(Integer.parseInt(listSubjects.getValueAt(selectedindex, 0).toString()), listSubjects.getValueAt(selectedindex, 1).toString(), listSubjects.getValueAt(selectedindex, 2).toString());
-        SubjectController sc = new SubjectController();
         System.out.println(""+s.toString());
-        sc.deleteSubject(s);
+        this.group.deleteSubject(s.getId(), s.getTitle(), s.getDescription());
         rafraichissement_du_tableau();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -222,8 +222,7 @@ public class PanelSubjects extends javax.swing.JPanel {
     public void rafraichissement_du_tableau(){
         Object[][] data = null;
 
-        SubjectController sc = new SubjectController();
-        ArrayList<Subject> subject = sc.getSubjects();
+        ArrayList<Subject> subject = this.group.getSubjects();
 
         data = new Object[subject.size()][3];
 

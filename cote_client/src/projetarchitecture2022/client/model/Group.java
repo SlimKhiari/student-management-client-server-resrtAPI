@@ -1,4 +1,4 @@
-package projetarchitecture2022.model;
+package projetarchitecture2022.client.model;
 
 /*
  *Methodes de création, selection , modification et suppression concernant l groupe

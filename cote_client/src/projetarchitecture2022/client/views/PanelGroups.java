@@ -3,22 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetarchitecture2022.views;
+package projetarchitecture2022.client.views;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+
 import javax.swing.JComboBox;
-//import projetarchitecture2022.ProjetArchitecture2022;
-import projetarchitecture2022.controller.GroupController;
-import projetarchitecture2022.controller.StudentController;
-import projetarchitecture2022.controller.SubjectController;
-import projetarchitecture2022.controller.TeachingUnitController;
-import projetarchitecture2022.model.Group;
-import projetarchitecture2022.model.Student;
-import projetarchitecture2022.model.Subject;
-import projetarchitecture2022.model.TeachingUnit;
+
+import projetarchitecture2022.client.model.Group;
+import projetarchitecture2022.client.model.GroupImplementation;
+import projetarchitecture2022.client.model.Student;
+import projetarchitecture2022.client.model.Subject;
+import projetarchitecture2022.client.model.TeachingUnit;
 
 /**
  *
@@ -35,9 +33,10 @@ public class PanelGroups extends javax.swing.JPanel {
     private int selectedindex;
     private int selectedindex_group;
     private Group group_al;
+    private GroupImplementation group;
     
-    
-    public PanelGroups(Connection con) {
+    public PanelGroups(GroupImplementation group) {
+    	this.group = group;
         initComponents();
     }
 
@@ -66,8 +65,7 @@ public class PanelGroups extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         Object[][] data = null;
 
-        StudentController sc = new StudentController();
-        ArrayList<Student> student = sc.getStudents();
+        ArrayList<Student> student = this.group.getStudents();
 
         data = new Object[student.size()][4];
 
@@ -87,8 +85,7 @@ public class PanelGroups extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         Object[][] data2 = null;
 
-        GroupController gc = new GroupController();
-        ArrayList<Group> g = gc.getListeGroupes();
+        ArrayList<Group> g = this.group.getGroups();
 
         data2 = new Object[g.size()][4];
 
@@ -146,11 +143,10 @@ public class PanelGroups extends javax.swing.JPanel {
         jLabel7.setText("Liste des élèves");
 
         cb_subject = new javax.swing.JComboBox<>();
-        SubjectController st = new SubjectController();
-        ArrayList<Subject> s = st.getSubjects();
+        ArrayList<Subject> s = this.group.getSubjects();
 
         for(int i=0; i< s.size(); i++) {
-            cb_subject.addItem(s.get(i).title);
+            cb_subject.addItem(s.get(i).getTitle());
         }
         cb_subject.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
@@ -158,8 +154,7 @@ public class PanelGroups extends javax.swing.JPanel {
             }
         });
 
-        TeachingUnitController uet = new TeachingUnitController();
-        ArrayList<TeachingUnit> ues = uet.getTeachingUnits();
+        ArrayList<TeachingUnit> ues = this.group.getTeachingUnits();
 
         for(int i=0; i< ues.size(); i++) {
             cb_ue.addItem(ues.get(i).title);
@@ -299,9 +294,8 @@ public class PanelGroups extends javax.swing.JPanel {
         // TODO add your handling code here
         selectedindex_group = listGroup.getSelectedRow();
         Group s = new Group(Integer.parseInt(listGroup.getValueAt(selectedindex_group, 0).toString()), null, null, null, null);
-        GroupController sc = new GroupController();
         System.out.println("delete group: "+ selectedindex_group);
-        sc.deleteGroup(s);
+        this.group.deleteGroup(s.getId());
         rafraichissement_du_tableau();
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -314,8 +308,7 @@ public class PanelGroups extends javax.swing.JPanel {
         rafraichissement_du_tableau();
         
         
-        TeachingUnitController uet = new TeachingUnitController();
-        ArrayList<TeachingUnit> ues = uet.getTeachingUnits();
+        ArrayList<TeachingUnit> ues = this.group.getTeachingUnits();
         System.out.println("ues ; "+ ues.toString());
         
         
@@ -325,12 +318,11 @@ public class PanelGroups extends javax.swing.JPanel {
         }
         cb_ue.revalidate();
         
-        SubjectController st = new SubjectController();
-        ArrayList<Subject> s = st.getSubjects();
+        ArrayList<Subject> s = this.group.getSubjects();
 
         cb_subject = new JComboBox();
         for(int i=0; i< s.size(); i++) {
-            cb_subject.addItem(s.get(i).title);
+            cb_subject.addItem(s.get(i).getTitle());
         }
 
         jPanel1.revalidate();
@@ -341,15 +333,11 @@ public class PanelGroups extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        StudentController studentC = new StudentController();
-        GroupController grp = new GroupController();
-        ArrayList<Student> stud = studentC.getStudents();
+        ArrayList<Student> stud = this.group.getStudents();
 
-        SubjectController subC = new SubjectController();
-        ArrayList<Subject> sub = subC.getSubjects();
+        ArrayList<Subject> sub = this.group.getSubjects();
 
-        TeachingUnitController tuC = new TeachingUnitController();
-        ArrayList<TeachingUnit> tu = tuC.getTeachingUnits();
+        ArrayList<TeachingUnit> tu = this.group.getTeachingUnits();
 
         //generer le nom aléatoire
         //ProjetArchitecture2022 nana = new ProjetArchitecture2022();
@@ -374,7 +362,7 @@ public class PanelGroups extends javax.swing.JPanel {
         Subject suAleatoire = sub.get(0);
        //create group
        Group newG = new Group(name, tuAleatoire, studsAleatoire, suAleatoire);
-       grp.addGroupe(newG);
+       this.group.addGroupe(newG.getId(), newG.getName(), newG.getStudents(), newG.getSubject(), newG.getTeachingUnit());
        rafraichissement_du_tableau();
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -398,30 +386,25 @@ public class PanelGroups extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int [] selectedindex = listStudents.getSelectedRows();
-        GroupController gc = new GroupController();
-        StudentController st = new StudentController();
-        TeachingUnitController tu = new TeachingUnitController();
-        SubjectController sc = new SubjectController();
-
-        ArrayList<Student> s = new ArrayList();
+        ArrayList<Student> s = new ArrayList<Student>();
         for (int i = 0; i < selectedindex.length; i++) {
             //s.add(st.getStudentById(selectedindex[i]));
             //System.out.println("List selection" + selectedindex.length + " -- "+ listStudents.getValueAt(i, 0));
-            System.out.println("List selection" + selectedindex.length + " -- "+ st.getStudentById(Integer.parseInt(listStudents.getValueAt(selectedindex[i], 0).toString())));
-            s.add(st.getStudentById(Integer.parseInt(listStudents.getValueAt(selectedindex[i], 0).toString())));
+            System.out.println("List selection" + selectedindex.length + " -- "+ this.group.getStudentById(Integer.parseInt(listStudents.getValueAt(selectedindex[i], 0).toString())));
+            s.add(this.group.getStudentById(Integer.parseInt(listStudents.getValueAt(selectedindex[i], 0).toString())));
         }
         
         //System.out.println(" "+ s.toString());
 
-        TeachingUnit ue = tu.getTeachingUnitByTitle(cb_ue.getSelectedItem().toString());
-        Subject sub = sc.getSubjectByTitle(cb_subject.getSelectedItem().toString());
+        TeachingUnit ue = this.group.getTeachingUnitByTitle(cb_ue.getSelectedItem().toString());
+        Subject sub = this.group.getSubjectByTitle(cb_subject.getSelectedItem().toString());
         //System.out.println("Unité d'enseignement -- " + ue.toString());
         //System.out.println("Sujet -- " + sub.toString());
 
         Group g = new Group(jt_name_group.getText(), ue, s, sub);
         group_al = g;
         //System.out.println("Group " + g.toString());
-        gc.addGroupe(g);
+        this.group.addGroupe(g.getId(), g.getName(), g.getStudents(), g.getSubject(), g.getTeachingUnit());
         rafraichissement_du_tableau();
         jt_name_group.setText("");
 
@@ -430,8 +413,7 @@ public class PanelGroups extends javax.swing.JPanel {
     public void rafraichissement_du_tableau(){
         Object[][] data2 = null;
 
-            GroupController gc = new GroupController();
-            ArrayList<Group> g = gc.getListeGroupes();
+            ArrayList<Group> g = this.group.getGroups();
 
             data2 = new Object[g.size()][9];
 

@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetarchitecture2022.views;
+package projetarchitecture2022.client.views;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import projetarchitecture2022.controller.TeachingUnitController;
-import projetarchitecture2022.model.TeachingUnit;
+
+import projetarchitecture2022.client.model.GroupImplementation;
+import projetarchitecture2022.client.model.TeachingUnit;
 
 /**
  *
@@ -23,7 +24,10 @@ public class PanelEducationUnit extends javax.swing.JPanel {
     private final String entete[] = {"Code UE", "libelle", "description"};
     private int selectedindex;
     
-    public PanelEducationUnit(Connection con) {
+    private GroupImplementation group;
+    
+    public PanelEducationUnit(GroupImplementation group) {
+    	this.group = group;
         initComponents();
     }
 
@@ -44,8 +48,7 @@ public class PanelEducationUnit extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         Object[][] data = null;
 
-        TeachingUnitController ue = new TeachingUnitController();
-        ArrayList<TeachingUnit> ues = ue.getTeachingUnits();
+        ArrayList<TeachingUnit> ues = this.group.getTeachingUnits();
 
         data = new Object[ues.size()][3];
 
@@ -169,8 +172,7 @@ public class PanelEducationUnit extends javax.swing.JPanel {
         // TODO add your handling code here:
         System.out.println("Click sur le bouton créer une unité d'enseignement");
         TeachingUnit ue = new TeachingUnit(jt_ue_libelle.getText());
-        TeachingUnitController t = new TeachingUnitController();
-        t.createTeachingunit(ue);
+        this.group.createTeachingUnit(ue.getId(), ue.getTitle());
         rafraichissement_du_tableau();
         jt_ue_libelle.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -184,9 +186,8 @@ public class PanelEducationUnit extends javax.swing.JPanel {
         // TODO add your handling code here:
         selectedindex = listUe.getSelectedRow();
         TeachingUnit ue = new TeachingUnit(Integer.parseInt(listUe.getValueAt(selectedindex, 0).toString()), listUe.getValueAt(selectedindex, 1).toString());
-        TeachingUnitController uet = new TeachingUnitController();
         System.out.println(""+ue.toString());
-        uet.deleteTeachingunit(ue);
+        this.group.deleteTeachingUnit(ue.getId(), ue.getTitle());
         rafraichissement_du_tableau();
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -194,8 +195,7 @@ public class PanelEducationUnit extends javax.swing.JPanel {
     public void rafraichissement_du_tableau(){
         Object[][] data = null;
 
-        TeachingUnitController ue = new TeachingUnitController();
-        ArrayList<TeachingUnit> ues = ue.getTeachingUnits();
+        ArrayList<TeachingUnit> ues = this.group.getTeachingUnits();
 
         data = new Object[ues.size()][3];
 

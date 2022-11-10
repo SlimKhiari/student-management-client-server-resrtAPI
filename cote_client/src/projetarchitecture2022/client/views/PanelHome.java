@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetarchitecture2022.views;
+package projetarchitecture2022.client.views;
 
-import java.sql.Connection;
+import projetarchitecture2022.client.model.GroupImplementation;
 
 /**
  *
@@ -16,7 +16,7 @@ public class PanelHome extends javax.swing.JPanel {
     /**
      * Creates new form PanelHome
      */
-    public PanelHome(Connection con) {
+    public PanelHome(GroupImplementation group) {
         initComponents();
     }
 

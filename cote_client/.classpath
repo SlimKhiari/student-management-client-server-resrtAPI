@@ -26,5 +26,15 @@
 			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/yotoi/.m2/repository/com/konghq/unirest-java/3.13.11/unirest-java-3.13.11-standalone.jar" sourcepath="C:/Users/yotoi/.m2/repository/com/konghq/unirest-java/3.13.11/unirest-java-3.13.11-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="com.konghq"/>
+			<attribute name="maven.artifactId" value="unirest-java"/>
+			<attribute name="maven.version" value="3.13.11"/>
+			<attribute name="maven.classifier" value="standalone"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

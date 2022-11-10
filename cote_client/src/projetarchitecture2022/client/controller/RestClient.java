@@ -1,3 +1,4 @@
+package projetarchitecture2022.client.controller;
 import kong.unirest.Unirest;
 import kong.unirest.HttpResponse;
 
@@ -54,7 +55,7 @@ public class RestClient {
 				  		+ " \"subjectDescription\" : \""+description+"\" ,"
 				  		+ " \"studentId\" : \""+studentId+"\" ,"
 				  		+ " \"studentFirstName\" : \""+firstname+"\" ,"
-				  		+ " \"studentLastName\" : \""+lastname+"\" }\n"}
+				  		+ " \"studentLastName\" : \""+lastname+"\" }\n")
 				  .asString();
 		return response.getBody();
 	}
@@ -105,7 +106,7 @@ public class RestClient {
 				  		+ " \"subjectDescription\" : \""+description+"\" ,"
 				  		+ " \"studentId\" : \""+studentId+"\" ,"
 				  		+ " \"studentFirstName\" : \""+firstname+"\" ,"
-				  		+ " \"studentLastName\" : \""+lastname+"\" }\n"}
+				  		+ " \"studentLastName\" : \""+lastname+"\" }\n")
 				  .asString();
 		return response.getBody();
 	}

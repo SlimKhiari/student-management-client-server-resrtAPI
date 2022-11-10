@@ -8,8 +8,8 @@ package projetarchitecture2022.client;
 
 import java.sql.Connection;
 
-import client.InterfacePrincipale;
-import server.controller.connectionDB;
+import projetarchitecture2022.client.model.GroupImplementation;
+import projetarchitecture2022.client.views.InterfacePrincipale;
 
 import static spark.Spark.*;
 /**
@@ -22,10 +22,10 @@ public class ProjetArchitectureClient2022 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-    	//Connection con = connectionDB.getConnection();
-        //InterfacePrincipale p = new InterfacePrincipale(con);
-        //p.setVisible(true);
+    	GroupImplementation group = new GroupImplementation();
+    	group.initRestClient("x", "y");
+		InterfacePrincipale p = new InterfacePrincipale(group);
+        p.setVisible(true);
     }
     
 }

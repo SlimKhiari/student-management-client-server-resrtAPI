@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetarchitecture2022.views;
+package projetarchitecture2022.client.views;
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
+
+import projetarchitecture2022.client.model.GroupImplementation;
 
 /**
  *
@@ -30,14 +32,14 @@ public class InterfacePrincipale extends javax.swing.JFrame {
     private int largeur;
     private int hauteur;
     
-    private Connection con;
+    private GroupImplementation group;
             
     public InterfacePrincipale() {
         
     }
     
-    public InterfacePrincipale(Connection con) {
-        this.con = con;
+    public InterfacePrincipale(GroupImplementation group) {
+        this.group = group;
         Toolkit tk = Toolkit.getDefaultToolkit() ;
         Dimension dimEcran = tk.getScreenSize() ;
         largeur = dimEcran.width ;
@@ -51,11 +53,11 @@ public class InterfacePrincipale extends javax.swing.JFrame {
     }
     
     public void customInitialisation(){
-        panel_education_unit = new PanelEducationUnit(this.con);
-        panel_groups = new PanelGroups(this.con);
-        panel_home = new PanelHome(this.con);
-        panel_students = new PanelStudents(this.con);
-        panel_subjects = new PanelSubjects(this.con);
+        panel_education_unit = new PanelEducationUnit(this.group);
+        panel_groups = new PanelGroups(this.group);
+        panel_home = new PanelHome(this.group);
+        panel_students = new PanelStudents(this.group);
+        panel_subjects = new PanelSubjects(this.group);
         
         card = new CardLayout();
         panel_principal.setLayout(card);

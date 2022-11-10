@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetarchitecture2022.views;
+package projetarchitecture2022.client.views;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import projetarchitecture2022.model.Student;
-import projetarchitecture2022.controller.StudentController;
+import projetarchitecture2022.client.model.Student;
+import projetarchitecture2022.client.model.GroupImplementation;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,8 +24,10 @@ public class PanelStudents extends javax.swing.JPanel {
     
     private final String entete[] = {"Numéro étudiant", "Nom", "Prenoms"};
     private int selectedindex;
+    private GroupImplementation group;
     
-    public PanelStudents(Connection con) {
+    public PanelStudents(GroupImplementation group) {
+    	this.group = group;
         initComponents();
     }
 
@@ -53,8 +55,7 @@ public class PanelStudents extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         Object[][] data = null;
 
-        StudentController sc = new StudentController();
-        ArrayList<Student> student = sc.getStudents();
+        ArrayList<Student> student = this.group.getStudents();
 
         data = new Object[student.size()][3];
 
@@ -193,15 +194,12 @@ public class PanelStudents extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
-    private StudentController studentController = new StudentController(); 
-    
     private void jButtonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateActionPerformed
         // TODO add your handling code here:
         System.out.println("Click sur le bouton créer un éléve");
         Student s = new Student(jt_eleve_nom.getText(), jt_eleve_prenom.getText());
         
-        StudentController sc = new StudentController();
-        sc.createStudent(s);
+        this.group.createStudent(s.getId(), s.getFirstname(), s.getLastname());
         rafraichissement_du_tableau();
         
         jt_eleve_nom.setText("");
@@ -226,17 +224,15 @@ public class PanelStudents extends javax.swing.JPanel {
         // TODO add your handling code here:
         selectedindex = listStudent.getSelectedRow();
         Student s = new Student(Integer.parseInt(listStudent.getValueAt(selectedindex, 0).toString()), listStudent.getValueAt(selectedindex, 1).toString(), listStudent.getValueAt(selectedindex, 2).toString());
-        StudentController sc = new StudentController();
         System.out.println(""+s.toString());
-        sc.deleteStudent(s);
+        this.group.deleteStudent(s.getId(), s.getFirstname(), s.getLastname());
         rafraichissement_du_tableau();
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     public void rafraichissement_du_tableau(){
         Object[][] data = null;
 
-        StudentController sc = new StudentController();
-        ArrayList<Student> student = sc.getStudents();
+        ArrayList<Student> student = this.group.getStudents();
 
         data = new Object[student.size()][3];
 
