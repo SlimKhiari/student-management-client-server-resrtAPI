@@ -102,13 +102,13 @@ public class GroupImplementation implements GroupInterface {
 		
 		ArrayList<Group> groups = new ArrayList<Group>();
 		
-//		for (int i=0; i<groupJSON.length(); i++) {
-//			JSONObject objGroup = groupJSON.getJSONObject(i);  
-//			ArrayList<Student> students = JSONToStudentList(objGroup.getJSONArray("students"));
-//			Subject subject = getSubjectByTitle(objGroup.getString("subjectTitle"));
-//			TeachingUnit teachingUnit = getTeachingUnitByTitle(objGroup.getString("teachingUnitTitle"));
-//			groups.add(new Group(objGroup.getInt("id"), objGroup.getString("name"), teachingUnit, students, subject));
-//		}
+		for (int i=0; i<groupJSON.length(); i++) {
+			JSONObject objGroup = groupJSON.getJSONObject(i);  
+			ArrayList<Student> students = JSONToStudentList(objGroup.getJSONArray("students"));
+			Subject subject = getSubjectByTitle(objGroup.getString("subjectTitle"));
+			TeachingUnit teachingUnit = getTeachingUnitByTitle(objGroup.getString("teachingUnitTitle"));
+			groups.add(new Group(objGroup.getInt("id"), objGroup.getString("name"), teachingUnit, students, subject));
+		}
 		
 		return groups;
 	}
@@ -132,7 +132,7 @@ public class GroupImplementation implements GroupInterface {
 	@Override
 	public TeachingUnit getTeachingUnitByTitle(String title) {
 		String response = this.restClient.getTeachingUnitByTitle(title);
-			
+		System.out.println(response);
 		JSONObject tuJSON = new JSONObject(response);
 		
 		return new TeachingUnit(tuJSON.getInt("id"), tuJSON.getString("title"));

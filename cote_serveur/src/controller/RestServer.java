@@ -68,6 +68,52 @@ public class RestServer {
 		});
 	}
 	
+	public void getTUByTitle() {
+		get("/teachingunit/:title", (request, response) -> {
+			TeachingUnitController teachingUnitController = new TeachingUnitController();
+	    	
+			TeachingUnit t = teachingUnitController.getTeachingUnitByTitle(request.params(":title"));
+			JSONObject jo = new JSONObject();
+			
+			jo.put("id", t.getId());
+			jo.put("title", t.getTitle());
+
+			return jo;
+		});
+	}
+	
+	public void getSubjectByTitle() {
+		get("/subject/:title", (request, response) -> {
+			SubjectController subjectController = new SubjectController();
+	    	
+			Subject s = subjectController.getSubjectByTitle(request.params(":title"));
+			JSONObject jo = new JSONObject();
+			
+			jo.put("id", s.getId());
+			jo.put("title", s.getTitle());
+			jo.put("description", s.getDescription());
+
+			return jo;
+		});
+	}
+	
+	public void getStudentById() {
+		get("/student/:id", (request, response) -> {
+			System.out.println("ok");
+			StudentController studentController = new StudentController();
+	    	
+			Student s = studentController.getStudentById(Integer.parseInt(request.params(":id")));
+			JSONObject jo = new JSONObject();
+			
+			jo.put("id", s.getId());
+			jo.put("firstname", s.getFirstname());
+			jo.put("lastname", s.getLastname());
+
+			System.out.println(jo);
+			return jo;
+		});
+	}
+	
 	public void getGroups() {
 		get("/groups", (request, response) -> {
 			GroupController groupController = new GroupController();

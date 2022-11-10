@@ -117,7 +117,7 @@ public class RestClient {
 	
 	public String getTeachingUnitByTitle(String title)
 	{
-		HttpResponse<String> response = Unirest.get("http://"+url+"/teachingUnit/"+title)
+		HttpResponse<String> response = Unirest.get("http://"+url+"/teachingunit/"+title)
 				  .header("Content-Type", "application/json")
 				  .asString();
 		return response.getBody();
