@@ -1,9 +1,13 @@
 package controller;
 
 import static spark.Spark.get;
+import static spark.Spark.post;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import model.Group;
 import model.Student;
@@ -11,6 +15,8 @@ import model.Subject;
 import model.TeachingUnit;
 
 public class RestServer {
+	
+	JsonParser jsonParser = new JsonParser();
 	
 	public void getStudents() {
 		get("/students", (request, response) -> {
@@ -28,6 +34,23 @@ public class RestServer {
 			}
 			
 			return students;
+		});
+	}
+	public void createStudent() {
+		post("/createStudent", (request, response) -> {
+			String result = "{ \"result\" : \"error\" }";
+			JsonObject jsonRequest = jsonParser.parse(request.body()).getAsJsonObject();
+
+			System.out.println(request);
+			// System.out.println(jsonRequest.get("command").toString().equals("\"asba\""));
+			// if (jsonRequest.get("command").toString().equals("\"createPerson\"")) {
+			System.out.println("Creation d'une personne");
+			String studentId = jsonRequest.get("studentId").toString().replaceAll("\"", "");
+			String firstName = jsonRequest.get("firstName").toString().replaceAll("\"", "");
+			String lastName = jsonRequest.get("lastName").toString().replaceAll("\"", "");
+			
+			System.out.print(studentId + "id of student");
+			return result;
 		});
 	}
 	
