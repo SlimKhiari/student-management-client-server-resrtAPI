@@ -15,7 +15,6 @@ import controller.connectionDB;
 public class ProjetArchitectureServer2022 {
 
     public static void main(String[] args) {
-    	Connection con = connectionDB.getConnection();
     	RestServer restServer = new RestServer();
     	
     	restServer.getStudents();
