@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 
-import java.sql.Connection;
 import controller.RestServer;
-import controller.connectionDB;
 
 /**
  *
