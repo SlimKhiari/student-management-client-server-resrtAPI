@@ -8,8 +8,6 @@ package projetarchitecture2022.client;
 
 import projetarchitecture2022.client.model.GroupImplementation;
 import projetarchitecture2022.client.views.InterfacePrincipale;
-
-import static spark.Spark.*;
 /**
  *
  * @author james

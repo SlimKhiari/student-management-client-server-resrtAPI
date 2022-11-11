@@ -197,7 +197,7 @@ public class PanelStudents extends javax.swing.JPanel {
     private void jButtonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateActionPerformed
         // TODO add your handling code here:
         System.out.println("Click sur le bouton créer un éléve");
-        Student s = new Student(jt_eleve_nom.getText(), jt_eleve_prenom.getText());
+        Student s = new Student(Integer.parseInt(id.getText()),jt_eleve_nom.getText(), jt_eleve_prenom.getText());
         
         this.group.createStudent(s.getId(), s.getFirstname(), s.getLastname());
         rafraichissement_du_tableau();

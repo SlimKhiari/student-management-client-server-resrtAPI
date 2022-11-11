@@ -6,7 +6,7 @@ public class Student {
     public String firstname;
     public String lastname;
 
-    public Student(Integer id, String firstname, String lastname) {
+    public Student(int id, String firstname, String lastname) {
         super();
         this.id = id;
         this.firstname = firstname;
@@ -19,7 +19,7 @@ public class Student {
         this.lastname = lastname;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -48,12 +48,12 @@ public class Student {
         return firstname.toUpperCase() + " " + lastname;
     }
 
-    @Override
-    public boolean equals(Object obj) {
+    //@Override
+    /*public boolean equals(Object obj) {
         if (obj == null) {
             return false;
         }
 
         return getId().equals(((Student) obj).getId());
-    }
+    }*/
 }

@@ -9,7 +9,7 @@ public class RestClient {
 		url= x+":"+y;
 	}
 	
-	public String postCreateStudent(String id, String  firstname, String lastname)
+	public String postCreateStudent(int id, String  firstname, String lastname)
 	{		
 		HttpResponse<String> response = Unirest.post("http://"+url+"/createStudent")
 				  .header("Content-Type", "application/json")
@@ -17,6 +17,7 @@ public class RestClient {
 					  		+ " \""+id+"\" , \"firstName\" : \""+firstname+"\" , \"lastName\" : "
 					  		+ "\""+lastname+"\" }\n")
 				  .asString();
+		System.out.println("http://"+url+"/createStudent");
 		return response.getBody();
 	}
 	

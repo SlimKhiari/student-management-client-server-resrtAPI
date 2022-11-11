@@ -30,7 +30,7 @@ public class GroupImplementation implements GroupInterface {
 
 	@Override
 	public void createStudent(int id, String firstname, String lastname) {
-		this.restClient.postCreateStudent(Integer.toString(id), firstname, lastname);
+		this.restClient.postCreateStudent(id, firstname, lastname);
 	}
 
 	@Override
@@ -81,9 +81,8 @@ public class GroupImplementation implements GroupInterface {
 	@Override
 	public ArrayList<TeachingUnit> getTeachingUnits() {
 		String response = this.restClient.getData("teachingunits");
-		
+
 		JSONArray tuJSON = new JSONArray(response);
-		
 		ArrayList<TeachingUnit> teachingUnits = new ArrayList<TeachingUnit>();
 		
 		for (int i=0; i<tuJSON.length(); i++) {
@@ -131,7 +130,8 @@ public class GroupImplementation implements GroupInterface {
 
 	@Override
 	public TeachingUnit getTeachingUnitByTitle(String title) {
-		String response = this.restClient.getTeachingUnitByTitle(title);
+		String response = this.restClient.getTeachingUnitByTitle(title);		
+
 		System.out.println(response);
 		JSONObject tuJSON = new JSONObject(response);
 		
