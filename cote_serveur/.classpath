@@ -17,7 +17,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/yotoi/.m2/repository/com/sparkjava/spark-core/2.9.4/spark-core-2.9.4.jar" sourcepath="C:/Users/yotoi/.m2/repository/com/sparkjava/spark-core/2.9.4/spark-core-2.9.4-sources.jar">
+	<classpathentry kind="lib" path="C:/Users/marou/OneDrive/Documents/GitHub/spark-core-2.9.4.jar" sourcepath="C:/Users/yotoi/.m2/repository/com/sparkjava/spark-core/2.9.4/spark-core-2.9.4-sources.jar">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="maven.groupId" value="com.sparkjava"/>
@@ -26,7 +26,7 @@
 			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/yotoi/.m2/repository/mysql/mysql-connector-java/8.0.24/mysql-connector-java-8.0.24.jar"/>
-	<classpathentry kind="lib" path="C:/Users/yotoi/Downloads/json-20190722.jar"/>
+	<classpathentry kind="lib" path="C:/Users/marou/OneDrive/Documents/GitHub/mysql-connector-j-8.0.31.jar"/>
+	<classpathentry kind="lib" path="C:/Users/marou/OneDrive/Documents/GitHub/json-20190722.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

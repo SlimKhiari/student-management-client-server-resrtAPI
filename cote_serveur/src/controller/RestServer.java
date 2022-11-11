@@ -50,6 +50,12 @@ public class RestServer {
 			String lastName = jsonRequest.get("lastName").toString().replaceAll("\"", "");
 			
 			System.out.print(studentId + "id of student");
+			
+			Student st = new Student(Integer.parseInt(studentId),firstName,lastName);
+		
+			StudentController.createStudent(st);
+			
+			
 			return result;
 		});
 	}

@@ -59,7 +59,9 @@ public class StudentController {
      *@params: Student
      *Retour : void
      */
-    public void createStudent(Student stud) {
+    static void createStudent(Student stud) {
+		
+    	System.out.print(stud.getFirstname()+" /// Test Stockage //"+stud.getLastname());
         String query = "INSERT INTO `student` (`firstname`, `lastname`) VALUES (?, ?)";
         try {
             Connection con = connectionDB.getConnection();
