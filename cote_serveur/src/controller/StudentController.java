@@ -37,7 +37,7 @@ public class StudentController {
      *@params: Student
      *Retour : Retourne un étudiant
      */
-    public Student getStudentById(int studentId) {
+    static Student getStudentById(int studentId) {
         Student student = null;
         String query = "SELECT `idstudent`,`firstname`,`lastname` FROM student WHERE idstudent = ?";
         try {

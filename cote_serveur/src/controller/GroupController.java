@@ -111,7 +111,7 @@ public class GroupController {
         return temp;
     }
 
-    public void addGroupe(Group group) {
+    static void addGroupe(Group group) {
         String query = "";
         try {
             Connection con = connectionDB.getConnection();

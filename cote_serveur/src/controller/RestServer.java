@@ -229,5 +229,59 @@ public class RestServer {
 			return groups;
 		});
 	}
+	public void creatgroups() {
+		post("/createGroup", (request, response) -> {
+			String result = "{ \"result\" : \"error\" }";
+			JsonObject jsonRequest = jsonParser.parse(request.body()).getAsJsonObject();
+
+			System.out.println(request);
+			System.out.println("Creation des groups");
+			String groupId = jsonRequest.get("groupId").toString().replaceAll("\"", "");
+			String groupName = jsonRequest.get("groupName").toString().replaceAll("\"", "");
+			String teachingUnitId = jsonRequest.get("teachingUnitId").toString().replaceAll("\"", "");
+			String teachingUnitTitle = jsonRequest.get("teachingUnitTitle").toString().replaceAll("\"", "");
+			String subjectId = jsonRequest.get("subjectId").toString().replaceAll("\"", "");
+			String subjectTitle = jsonRequest.get("subjectTitle").toString().replaceAll("\"", "");
+			String subjectDescription = jsonRequest.get("subjectDescription").toString().replaceAll("\"", "");
+			
+			System.out.print(groupId + "id of Grp");
+			System.out.print(teachingUnitId + "id of TU");
+			System.out.print(subjectId + "id of Sub");
+			
+			TeachingUnit tu = new TeachingUnit(Integer.parseInt(teachingUnitId),teachingUnitTitle);
+			Subject sb = new Subject(Integer.parseInt(subjectId),subjectTitle,subjectDescription);
+
+			Group gr = new Group(Integer.parseInt(groupId),groupName,tu,null,sb);
+			
+			GroupController.addGroupe(gr);
+			
+			
+			return result;
+		});
+	}
+	public void creatgroupStudent() {
+		post("/createGroupStudent", (request, response) -> {
+			String result = "{ \"result\" : \"error\" }";
+			JsonObject jsonRequest = jsonParser.parse(request.body()).getAsJsonObject();
+
+			System.out.println(request);
+			System.out.println("Creation des groups");
+			String idgroup = jsonRequest.get("idgroup").toString().replaceAll("\"", "");
+			String studentId = jsonRequest.get("studentId").toString().replaceAll("\"", "");
+			
+			System.out.print(studentId + "id of student");
+			System.out.print(idgroup + "id of grp");
+			
+			Student st= StudentController.getStudentById(Integer.parseInt(studentId));
+			
+			//Group gr = new Group(Integer.parseInt(groupId),groupName,tu,null,sb);
+			
+			//GroupController.addGroupe(GroupController.);
+						
+			
+			return result;
+		});
+	}
+
 	
 }
