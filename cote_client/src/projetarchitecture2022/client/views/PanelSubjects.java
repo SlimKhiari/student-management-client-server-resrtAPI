@@ -194,10 +194,13 @@ public class PanelSubjects extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         System.out.println("Click sur le bouton créer un éléve");
-        Subject s = new Subject(jt_subject_nom.getText(), jt_subject_description.getText());
+        Subject s = new Subject(Integer.parseInt(jt_subject_id.getText()),jt_subject_nom.getText(), jt_subject_description.getText());
         
         this.group.createSubject(s.getId(), s.getTitle(), s.getDescription());
+     //   this.group.createSubject(20, "SubName", "SubDesc");
+
         rafraichissement_du_tableau();
+        jt_subject_id.setText("");
         jt_subject_nom.setText("");
         jt_subject_description.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed

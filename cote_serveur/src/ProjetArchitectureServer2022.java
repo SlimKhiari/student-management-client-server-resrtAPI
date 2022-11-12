@@ -14,7 +14,7 @@ public class ProjetArchitectureServer2022 {
 
     public static void main(String[] args) {
     	RestServer restServer = new RestServer();
-    	
+    	restServer.deleteStudent();
     	restServer.getStudents();
     	restServer.getSubjects();
     	restServer.getTU();
@@ -23,6 +23,8 @@ public class ProjetArchitectureServer2022 {
     	restServer.getSubjectByTitle();
     	restServer.getStudentById();
     	restServer.createStudent();
+    	restServer.createSubjects();
+
     }
     
 }

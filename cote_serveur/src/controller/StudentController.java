@@ -79,8 +79,11 @@ public class StudentController {
      *@params: Student
      *Retour : void
      */
-    public void deleteStudent(Student stud) {
+    static void deleteStudent(Student stud) {
+        System.out.println("***id of student"+stud.getId()+" a ete supprimer !!");
+
         String query = "DELETE FROM `student` WHERE idstudent=?";
+        System.out.println("***id of student"+stud.getId()+" a ete supprimer !!");
 
         try {
             Connection connection = connectionDB.getConnection();

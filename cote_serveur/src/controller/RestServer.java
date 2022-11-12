@@ -59,6 +59,28 @@ public class RestServer {
 			return result;
 		});
 	}
+	public void deleteStudent() {
+		post("/deleteStudent", (request, response) -> {
+			String result = "{ \"result\" : \"error\" }";
+			JsonObject jsonRequest = jsonParser.parse(request.body()).getAsJsonObject();
+
+			System.out.println(request);
+			System.out.println("Suppression d'une personne");
+			String studentId = jsonRequest.get("studentId").toString().replaceAll("\"", "");
+			String firstName = jsonRequest.get("firstName").toString().replaceAll("\"", "");
+			String lastName = jsonRequest.get("lastName").toString().replaceAll("\"", "");
+			
+			System.out.println(studentId + "id of student");
+			
+			Student st = new Student(Integer.parseInt(studentId),firstName,lastName);
+		
+			StudentController.deleteStudent(st);
+			
+			
+			return result;
+		});
+	}
+	
 	
 	public void getSubjects() {
 		get("/subjects", (request, response) -> {
@@ -78,6 +100,28 @@ public class RestServer {
 			return subjects;
 		});
 	}
+	public void createSubjects() {
+		post("/createSubject", (request, response) -> {
+			String result = "{ \"result\" : \"error\" }";
+			JsonObject jsonRequest = jsonParser.parse(request.body()).getAsJsonObject();
+
+			System.out.println(request);
+			System.out.println("Create subject");
+			String subjectId = jsonRequest.get("subjectId").toString().replaceAll("\"", "");
+			String subjectTitle = jsonRequest.get("subjectTitle").toString().replaceAll("\"", "");
+			String subjectDescription = jsonRequest.get("subjectDescription").toString().replaceAll("\"", "");
+			
+			System.out.print(subjectId + "id of student");
+			
+			Subject sb = new Subject(Integer.parseInt(subjectId),subjectTitle,subjectDescription);
+		
+			SubjectController.createSubject(sb);
+			
+			
+			return result;
+		});
+	}
+
 	
 	public void getTU() {
 		get("/teachingunits", (request, response) -> {

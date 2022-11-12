@@ -79,7 +79,7 @@ public class SubjectController {
      *@params: Subject
      *Retour : void
      */
-    public void createSubject(Subject sub) {
+    static void createSubject(Subject sub) {
         String query = "INSERT INTO `subject` (`title`,`description`) VALUES (?, ?)";
         try {
             Connection con = connectionDB.getConnection();

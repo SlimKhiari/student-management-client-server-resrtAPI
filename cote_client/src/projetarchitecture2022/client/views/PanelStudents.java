@@ -226,7 +226,7 @@ public class PanelStudents extends javax.swing.JPanel {
         Student s = new Student(Integer.parseInt(listStudent.getValueAt(selectedindex, 0).toString()), listStudent.getValueAt(selectedindex, 1).toString(), listStudent.getValueAt(selectedindex, 2).toString());
         System.out.println(""+s.toString());
         this.group.deleteStudent(s.getId(), s.getFirstname(), s.getLastname());
-        rafraichissement_du_tableau();
+      //  rafraichissement_du_tableau();
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     public void rafraichissement_du_tableau(){
