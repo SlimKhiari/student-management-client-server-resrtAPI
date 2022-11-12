@@ -171,9 +171,10 @@ public class PanelEducationUnit extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         System.out.println("Click sur le bouton créer une unité d'enseignement");
-        TeachingUnit ue = new TeachingUnit(jt_ue_libelle.getText());
+        TeachingUnit ue = new TeachingUnit(Integer.parseInt(jt_ue_code.getText()),jt_ue_libelle.getText());
         this.group.createTeachingUnit(ue.getId(), ue.getTitle());
         rafraichissement_du_tableau();
+        jt_ue_code.setText("");
         jt_ue_libelle.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 

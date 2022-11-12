@@ -154,6 +154,27 @@ public class RestServer {
 			return jo;
 		});
 	}
+	public void creatTU() {
+		post("/createTeachingUnit", (request, response) -> {
+			String result = "{ \"result\" : \"error\" }";
+			JsonObject jsonRequest = jsonParser.parse(request.body()).getAsJsonObject();
+
+			System.out.println(request);
+			System.out.println("Creation of TU");
+			String teachingUnitId = jsonRequest.get("teachingUnitId").toString().replaceAll("\"", "");
+			String teachingUnitTitle = jsonRequest.get("teachingUnitTitle").toString().replaceAll("\"", "");
+			
+			System.out.print(teachingUnitId + "id of TU");
+			
+			TeachingUnit tu = new TeachingUnit(Integer.parseInt(teachingUnitId),teachingUnitTitle);
+			
+			TeachingUnitController.createTeachingunit(tu);
+			
+			
+			return result;
+		});
+	}
+
 	
 	public void getSubjectByTitle() {
 		get("/subject/:title", (request, response) -> {

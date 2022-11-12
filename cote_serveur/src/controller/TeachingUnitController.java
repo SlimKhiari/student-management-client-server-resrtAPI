@@ -79,7 +79,8 @@ public class TeachingUnitController {
      *@params: TeachingUnit
      *Retour : void
      */
-    public void createTeachingunit(TeachingUnit tu) {
+    static void createTeachingunit(TeachingUnit tu) {
+
         String query = "INSERT INTO `teachingunit` (`title`) VALUES (?)";
         try {
             Connection con = connectionDB.getConnection();

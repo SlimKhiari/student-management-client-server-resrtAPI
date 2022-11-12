@@ -24,6 +24,8 @@ public class ProjetArchitectureServer2022 {
     	restServer.getStudentById();
     	restServer.createStudent();
     	restServer.createSubjects();
+    	restServer.creatTU();
+
 
     }
     

@@ -53,6 +53,7 @@ public class GroupImplementation implements GroupInterface {
 
 	@Override
 	public void createTeachingUnit(int id, String title) {
+		System.out.println("My ID: "+id+" /////////// "+id);
 		this.restClient.postCreateTeachingUnit(id, title);
 	}
 
