@@ -6,6 +6,11 @@
 
 package projetarchitecture2022.client;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.ini4j.*;
+import projetarchitecture2022.client.controller.RestClient;
 import projetarchitecture2022.client.model.GroupImplementation;
 import projetarchitecture2022.client.views.InterfacePrincipale;
 /**
@@ -13,13 +18,16 @@ import projetarchitecture2022.client.views.InterfacePrincipale;
  * @author james
  */
 public class ProjetArchitectureClient2022 {
-
     /**
      * @param args the command line arguments
+     * @throws IOException 
+     * @throws InvalidFileFormatException 
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidFileFormatException, IOException {
     	GroupImplementation group = new GroupImplementation();
-    	group.initRestClient("localhost", "4567");
+    	Ini config = new Ini(new File("urlConfiguration.ini"));
+		RestClient restCli = new RestClient(config.get("Server","URL"),config.get("Server","PORT"));
+    	group.initRestClient(config.get("Server","URL"),config.get("Server","PORT"));
 		InterfacePrincipale p = new InterfacePrincipale(group);
         p.setVisible(true);
     }
