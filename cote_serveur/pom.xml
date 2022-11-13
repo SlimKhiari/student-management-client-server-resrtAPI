@@ -2,9 +2,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>Arlo_Resources</groupId>
-	<artifactId>Arlo_Resources</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>Groupes</groupId>
+	<artifactId>4_Groupes</artifactId>
+	<version>0.1-SNAPSHOT</version>
 	<build>
 
 		<sourceDirectory>src</sourceDirectory>
@@ -67,11 +67,11 @@
 			<version>${slf4j.version}</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.sparkjava/spark-core -->
-<dependency>
-    <groupId>com.sparkjava</groupId>
-    <artifactId>spark-core</artifactId>
-    <version>2.9.4</version>
-</dependency>
+		<dependency>
+		    <groupId>com.sparkjava</groupId>
+		    <artifactId>spark-core</artifactId>
+		    <version>2.9.4</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx -->
 		<dependency>
 			<groupId>org.openjfx</groupId>
