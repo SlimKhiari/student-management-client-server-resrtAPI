@@ -2,6 +2,7 @@ package controller;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
+import static spark.Spark.delete;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -58,7 +59,7 @@ public class RestServer {
 		});
 	}
 	public void deleteStudent() {
-		post("/deleteStudent", (request, response) -> {
+		delete("/deleteStudent", (request, response) -> {
 			JsonObject jsonRequest = jsonParser.parse(request.body()).getAsJsonObject();
 
 			System.out.println(request);

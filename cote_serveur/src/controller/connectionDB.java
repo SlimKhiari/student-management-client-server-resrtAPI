@@ -10,7 +10,7 @@ public class connectionDB {
     static Connection connection = null;
     static String url = "jdbc:mysql://localhost:3306/group";
     static String username = "root";
-    static String password = "17981562";
+    static String password = "N0tAfrom4geY0uKn0w";
 
     public static Connection getConnection() {
         try {

@@ -35,7 +35,8 @@ public class GroupImplementation implements GroupInterface {
 
 	@Override
 	public void deleteStudent(int id, String firstname, String lastname) {
-		// System.out.println("My ID: "+id+" /////////// "+Integer.toString(id));
+		System.out.println("My ID: "+id+" /////////// "+Integer.toString(id));
+		
 		this.restClient.postDeleteStudent(Integer.toString(id), firstname, lastname);
 	}
 
