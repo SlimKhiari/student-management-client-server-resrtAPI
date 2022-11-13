@@ -54,7 +54,6 @@ public class RestServer {
 		
 			StudentController.createStudent(st);
 			
-			
 			return st;
 		});
 	}
