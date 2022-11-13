@@ -38,7 +38,6 @@ public class RestServer {
 	}
 	public void createStudent() {
 		post("/createStudent", (request, response) -> {
-			String result = "{ \"result\" : \"error\" }";
 			JsonObject jsonRequest = jsonParser.parse(request.body()).getAsJsonObject();
 
 			System.out.println(request);
@@ -56,12 +55,11 @@ public class RestServer {
 			StudentController.createStudent(st);
 			
 			
-			return result;
+			return st;
 		});
 	}
 	public void deleteStudent() {
 		post("/deleteStudent", (request, response) -> {
-			String result = "{ \"result\" : \"error\" }";
 			JsonObject jsonRequest = jsonParser.parse(request.body()).getAsJsonObject();
 
 			System.out.println(request);
@@ -76,8 +74,7 @@ public class RestServer {
 		
 			StudentController.deleteStudent(st);
 			
-			
-			return result;
+			return st;
 		});
 	}
 	
@@ -102,7 +99,6 @@ public class RestServer {
 	}
 	public void createSubjects() {
 		post("/createSubject", (request, response) -> {
-			String result = "{ \"result\" : \"error\" }";
 			JsonObject jsonRequest = jsonParser.parse(request.body()).getAsJsonObject();
 
 			System.out.println(request);
@@ -117,8 +113,7 @@ public class RestServer {
 		
 			SubjectController.createSubject(sb);
 			
-			
-			return result;
+			return sb;
 		});
 	}
 
@@ -156,7 +151,6 @@ public class RestServer {
 	}
 	public void creatTU() {
 		post("/createTeachingUnit", (request, response) -> {
-			String result = "{ \"result\" : \"error\" }";
 			JsonObject jsonRequest = jsonParser.parse(request.body()).getAsJsonObject();
 
 			System.out.println(request);
@@ -170,8 +164,7 @@ public class RestServer {
 			
 			TeachingUnitController.createTeachingunit(tu);
 			
-			
-			return result;
+			return tu;
 		});
 	}
 
@@ -231,7 +224,6 @@ public class RestServer {
 	}
 	public void creatgroups() {
 		post("/createGroup", (request, response) -> {
-			String result = "{ \"result\" : \"error\" }";
 			JsonObject jsonRequest = jsonParser.parse(request.body()).getAsJsonObject();
 
 			System.out.println(request);
@@ -256,12 +248,12 @@ public class RestServer {
 			GroupController.addGroupe(gr);
 			
 			
-			return result;
+			return gr;
 		});
 	}
 	public void creatgroupStudent() {
 		post("/createGroupStudent", (request, response) -> {
-			String result = "{ \"result\" : \"error\" }";
+			String result = "{ \"result\" : \"test\" }";
 			JsonObject jsonRequest = jsonParser.parse(request.body()).getAsJsonObject();
 
 			System.out.println(request);
@@ -277,8 +269,6 @@ public class RestServer {
 			//Group gr = new Group(Integer.parseInt(groupId),groupName,tu,null,sb);
 			
 			//GroupController.addGroupe(GroupController.);
-						
-			
 			return result;
 		});
 	}
