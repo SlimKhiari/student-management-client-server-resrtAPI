@@ -163,11 +163,11 @@ public class GroupController {
      *Retour : void
      */
     public void deleteGroup(Group group) {
-        String query = "DELETE FROM `groupe`" + "WHERE idgroup = ?";
+        String query = "DELETE FROM `groupe`" + "WHERE name = ?";
         try {
             Connection con = connectionDB.getConnection();
             PreparedStatement ps = con.prepareStatement(query);
-            ps.setInt(1, group.getId());
+            ps.setString(1, group.getName());
             ps.execute();
         } catch (SQLException e) {
             System.err.println(e.getMessage());

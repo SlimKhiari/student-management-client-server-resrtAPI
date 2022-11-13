@@ -78,6 +78,56 @@ public class RestServer {
 		});
 	}
 	
+	public void deleteSubject() {
+		delete("/deleteSubject", (request, response) -> {
+			SubjectController subjectController = new SubjectController();
+	    	
+			JsonObject jsonRequest = jsonParser.parse(request.body()).getAsJsonObject();
+
+			String subjecttId = jsonRequest.get("subjectId").toString().replaceAll("\"", "");
+			String subjectTitle = jsonRequest.get("subjectTitle").toString().replaceAll("\"", "");
+			String subjectDescription = jsonRequest.get("subjectDescription").toString().replaceAll("\"", "");
+			
+			Subject su = new Subject(Integer.parseInt(subjecttId),subjectTitle,subjectDescription);
+		
+			subjectController.deleteSubject(su);
+			
+			return su;
+		});
+	}
+	
+	public void deleteTU() {
+		delete("/deleteTeachingUnit", (request, response) -> {
+			TeachingUnitController tuController = new TeachingUnitController();
+	    	
+			JsonObject jsonRequest = jsonParser.parse(request.body()).getAsJsonObject();
+
+			String tuId = jsonRequest.get("teachingUnitId").toString().replaceAll("\"", "");
+			String tuTitle = jsonRequest.get("teachingUnitTitle").toString().replaceAll("\"", "");
+	
+			TeachingUnit tu = new TeachingUnit(Integer.parseInt(tuId),tuTitle);
+		
+			tuController.deleteTeachingunit(tu);
+			
+			return tu;
+		});
+	}
+	
+	public void deleteGroup() {
+		delete("/deleteGroup", (request, response) -> {
+			GroupController groupController = new GroupController();
+	    	
+			JsonObject jsonRequest = jsonParser.parse(request.body()).getAsJsonObject();
+
+			String groupName = jsonRequest.get("groupName").toString().replaceAll("\"", "");
+		
+			Group gr = new Group(0,groupName,null,null,null);
+		
+			groupController.deleteGroup(gr);
+			
+			return gr;
+		});
+	}
 	
 	public void getSubjects() {
 		get("/subjects", (request, response) -> {
