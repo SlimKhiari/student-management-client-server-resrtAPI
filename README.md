@@ -1,4 +1,4 @@
-Gestionnaire des étudiants en java 11
-Mode de fonctionnement : client-server avec Rest API (Spark + unirest)
-Interface graphique : swing
-Database : MySql
+* Student management in java 11
+* client-server with Rest API (Spark + unirest)
+* Front-end : swing
+* Database : MySql
