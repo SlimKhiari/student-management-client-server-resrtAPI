@@ -1,8 +1,8 @@
 * Student management in java 11
 * client-server approach with Rest API
-   server: spark micro framework
+   > server: spark micro framework
    & 
-   client: unirest
+   > client: unirest
 * Front-end : swing
 * Database : MySql
 
